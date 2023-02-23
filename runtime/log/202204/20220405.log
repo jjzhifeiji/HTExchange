@@ -1,0 +1,45 @@
+2022-04-05 19:01:41|ERROR|App.Resource_ResourceController.checkMobileInfo|PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'api_filtration.zhx_number_cache' doesn't exist in /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php:236
+Stack trace:
+#0 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(236): PDO->prepare('SELECT * FROM z...')
+#1 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(914): NotORM_Result->query('SELECT * FROM z...', Array)
+#2 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(990): NotORM_Result->execute()
+#3 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(978): NotORM_Result->fetchRow('')
+#4 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Model/Resource/NumberCacheModel.php(17): NotORM_Result->fetchOne()
+#5 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Domain/Resource/ResourceDomain.php(17): App\Model\Resource\NumberCacheModel->getCacheNumber(19999999999, 1)
+#6 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Api/Resource/ResourceController.php(30): App\Domain\Resource\ResourceDomain->checkMobileInfo(19999999999, 1)
+#7 [internal function]: App\Api\Resource\ResourceController->checkMobileInfo()
+#8 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/kernal/src/PhalApi.php(53): call_user_func(Array)
+#9 /www/wwwroot/IronManCRM/ser/FiltrationAPI/public/index.php(9): PhalApi\PhalApi->response()
+#10 {main}
+2022-04-05 19:05:28|ERROR|App.Resource_ResourceController.checkMobileInfo|PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'api_filtration.zhx_number_cache' doesn't exist in /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php:236
+Stack trace:
+#0 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(236): PDO->prepare('SELECT * FROM z...')
+#1 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(914): NotORM_Result->query('SELECT * FROM z...', Array)
+#2 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(990): NotORM_Result->execute()
+#3 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(978): NotORM_Result->fetchRow('')
+#4 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Model/Resource/NumberCacheModel.php(17): NotORM_Result->fetchOne()
+#5 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Domain/Resource/ResourceDomain.php(17): App\Model\Resource\NumberCacheModel->getCacheNumber(19999999999, 1)
+#6 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Api/Resource/ResourceController.php(30): App\Domain\Resource\ResourceDomain->checkMobileInfo(19999999999, 1)
+#7 [internal function]: App\Api\Resource\ResourceController->checkMobileInfo()
+#8 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/kernal/src/PhalApi.php(53): call_user_func(Array)
+#9 /www/wwwroot/IronManCRM/ser/FiltrationAPI/public/index.php(9): PhalApi\PhalApi->response()
+#10 {main}
+2022-04-05 19:08:24|SQL|[#1 - 12.91ms - SQL]/www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Domain/Resource/ResourceDomain.php(17):    App\Model\Resource\NumberCacheModel::getCacheNumber()    zhx_number_cache    SELECT * FROM zhx_number_cache WHERE (res_number = 19999999999) AND (model = 1) AND (result = 1) LIMIT 1;|{"request":{"service":"App.Resource_ResourceController.checkMobileInfo"}}
+2022-04-05 19:08:24|SQL|[#2 - 4.04ms - SQL]/www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Domain/Resource/ResourceDomain.php(25):    App\Model\Setting\NumberLogModel::addNumberLog()    zhx_number_log    INSERT  INTO zhx_number_log (`res_number`, `create_time`, `type`, `result`, `desc`) VALUES (19999999999, '2022-04-05 19:08:24', 1, 0, '1接口调用');|{"request":{"service":"App.Resource_ResourceController.checkMobileInfo"}}
+2022-04-05 19:08:24|INFO|model->1 查询新数据19999999999 -> |
+2022-04-05 19:08:24|SQL|[#3 - 4.82ms - SQL]/www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Model/API/DongyunAPI.php(29):    App\Model\Platform\PlatformModel::addCount()    zhx_platform    UPDATE zhx_platform SET `dosage` = dosage + 1 WHERE (id = 1);|{"request":{"service":"App.Resource_ResourceController.checkMobileInfo"}}
+2022-04-05 19:08:24|SQL|[#4 - 3.68ms - SQL]/www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Model/API/DongyunAPI.php(37):    App\Model\Setting\NumberLogModel::addNumberLog()    zhx_number_log    INSERT  INTO zhx_number_log (`res_number`, `create_time`, `type`, `result`, `desc`) VALUES (19999999999, '2022-04-05 19:08:24', 4, 0, '4东云API查询结果');|{"request":{"service":"App.Resource_ResourceController.checkMobileInfo"}}
+2022-04-05 19:08:24|ERROR|App.Resource_ResourceController.checkMobileInfo|PDOException: SQLSTATE[21000]: Cardinality violation: 1241 Operand should contain 1 column(s) in /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php:236
+Stack trace:
+#0 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(236): PDO->prepare('INSERT  INTO zh...')
+#1 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(397): NotORM_Result->query('INSERT  INTO zh...', Array)
+#2 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/notorm/src/NotORM/Result.php(414): NotORM_Result->insert_multi(Array)
+#3 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Model/Resource/DongyunModel.php(12): NotORM_Result->insert(Array)
+#4 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Model/API/DongyunAPI.php(44): App\Model\Resource\DongyunModel->addNumber(Array)
+#5 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Domain/Resource/ResourceDomain.php(45): App\Model\API\DongyunAPI->phoneInquire(19999999999)
+#6 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Domain/Resource/ResourceDomain.php(32): App\Domain\Resource\ResourceDomain->checkModel1(false, 19999999999)
+#7 /www/wwwroot/IronManCRM/ser/FiltrationAPI/src/app/Api/Resource/ResourceController.php(30): App\Domain\Resource\ResourceDomain->checkMobileInfo(19999999999, 1)
+#8 [internal function]: App\Api\Resource\ResourceController->checkMobileInfo()
+#9 /www/wwwroot/IronManCRM/ser/FiltrationAPI/vendor/phalapi/kernal/src/PhalApi.php(53): call_user_func(Array)
+#10 /www/wwwroot/IronManCRM/ser/FiltrationAPI/public/index.php(9): PhalApi\PhalApi->response()
+#11 {main}

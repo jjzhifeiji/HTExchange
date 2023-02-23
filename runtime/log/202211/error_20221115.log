@@ -1,0 +1,30 @@
+2022-11-15 11:00:57|ERROR|Error(1)：Uncaught Error: Call to a member function check() on null in D:\HT\gogopay\GOGOPayTask\src\view\docs\api_desc_tpl.php:13
+Stack trace:
+#0 D:\HT\gogopay\GOGOPayTask\vendor\phalapi\kernal\src\Helper\ApiDesc.php(49): include()
+#1 D:\HT\gogopay\GOGOPayTask\public\show.php(46): PhalApi\Helper\ApiDesc->render('D:\\HT\\gogopay\\G...')
+#2 {main}
+  thrown [文件：D:\HT\gogopay\GOGOPayTask\src\view\docs\api_desc_tpl.php，行号：13，时间：1668481257]
+2022-11-15 11:01:25|ERROR|Error(1)：Uncaught Error: Call to a member function check() on null in D:\HT\gogopay\GOGOPayTask\src\view\docs\api_desc_tpl.php:13
+Stack trace:
+#0 D:\HT\gogopay\GOGOPayTask\vendor\phalapi\kernal\src\Helper\ApiDesc.php(49): include()
+#1 D:\HT\gogopay\GOGOPayTask\public\show.php(46): PhalApi\Helper\ApiDesc->render('D:\\HT\\gogopay\\G...')
+#2 {main}
+  thrown [文件：D:\HT\gogopay\GOGOPayTask\src\view\docs\api_desc_tpl.php，行号：13，时间：1668481285]
+2022-11-15 11:01:51|ERROR|Error(1)：Uncaught Error: Call to a member function check() on null in D:\HT\gogopay\GOGOPayTask\src\view\docs\api_desc_tpl.php:13
+Stack trace:
+#0 D:\HT\gogopay\GOGOPayTask\vendor\phalapi\kernal\src\Helper\ApiDesc.php(49): include()
+#1 D:\HT\gogopay\GOGOPayTask\public\show.php(46): PhalApi\Helper\ApiDesc->render('D:\\HT\\gogopay\\G...')
+#2 {main}
+  thrown [文件：D:\HT\gogopay\GOGOPayTask\src\view\docs\api_desc_tpl.php，行号：13，时间：1668481311]
+2022-11-15 11:02:17|ERROR|Error(1)：Uncaught Error: Call to a member function check() on null in D:\HT\gogopay\GOGOPayTask\src\view\docs\api_desc_tpl.php:13
+Stack trace:
+#0 D:\HT\gogopay\GOGOPayTask\vendor\phalapi\kernal\src\Helper\ApiDesc.php(49): include()
+#1 D:\HT\gogopay\GOGOPayTask\public\show.php(43): PhalApi\Helper\ApiDesc->render('D:\\HT\\gogopay\\G...')
+#2 {main}
+  thrown [文件：D:\HT\gogopay\GOGOPayTask\src\view\docs\api_desc_tpl.php，行号：13，时间：1668481337]
+2022-11-15 11:02:17|ERROR|Error(1)：Uncaught Error: Call to a member function check() on null in D:\HT\gogopay\GOGOPayTask\src\view\docs\api_desc_tpl.php:13
+Stack trace:
+#0 D:\HT\gogopay\GOGOPayTask\vendor\phalapi\kernal\src\Helper\ApiDesc.php(49): include()
+#1 D:\HT\gogopay\GOGOPayTask\public\show.php(43): PhalApi\Helper\ApiDesc->render('D:\\HT\\gogopay\\G...')
+#2 {main}
+  thrown [文件：D:\HT\gogopay\GOGOPayTask\src\view\docs\api_desc_tpl.php，行号：13，时间：1668481337]

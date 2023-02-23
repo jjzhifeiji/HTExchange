@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>倒计时代码</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 20px;
+        }
+
+        .time {
+            overflow: hidden;
+            margin: 10px auto;
+            border: 1px solid blue;
+            text-align: center;
+            background: #65ed45;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+        }
+
+        .time h3 {
+            font-size: 30px;
+            text-align: center;
+            padding-bottom: 30px;
+            letter-spacing: 5px;
+        }
+
+        .time h3 input {
+            border: none;
+            width: 100px;
+            height: 35px;
+            text-align: center;
+            border-radius: 8px;
+            background: #f2f2f2;
+        }
+
+        .time .even,
+        .time .odd {
+            float: left;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+
+        .time .even {
+            width: 35px;
+            padding: 0 20px;
+            background: #b34e0a;
+            color: #ffffff;
+        }
+
+        .time .odd {
+            width: 20px;
+            padding: 0 10px;
+            background: #ffffff;
+        }
+
+        #lastDiv {
+            margin-right: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="time"><span id="order_no"></span></div>
+
+<div id="ing_info">
+    <!--    时间-->
+    <div class="time">
+        <h3>距离下班还有:</h3>
+        <div id="residueMinutes" class="even"></div>
+        <div class="odd">分</div>
+        <div id="residueSeconds" class="even"></div>
+        <div class="odd" id="lastDiv">秒</div>
+
+    </div>
+    <!--等待-->
+    <div id="waiting_info">
+        <div class="time">
+            <h3>waiting...:</h3>
+        </div>
+    </div>
+
+    <!--    卡信息-->
+    <div id="card_info">
+        <div class="time">
+            <span>name:</span>
+            <span id="pay_name"></span>
+        </div>
+        <div class="time">
+            <span>card:</span>
+            <span id="pay_no"></span>
+        </div>
+        <div class="time">
+            <span>b:</span>
+            <span id="pay_organ"></span>
+        </div>
+        <div class="time">
+            <span>bl:</span>
+            <span id="pay_local"></span>
+        </div>
+    </div>
+</div>
+
+
+<!--结束-->
+<div id="finish_info">
+    <div class="time">
+        <h3>已结束:</h3>
+    </div>
+</div>
+</body>
+
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+    var status = 0
+    var query = window.location.search.substring(1);
+    var o = query.split("?");
+    var end_time = new Date();
+    var order;
+    var cdt;
+
+    console.log("sn:" + o);
+
+    if (o.toString().length > 15) {
+        console.log("show:");
+
+        document.getElementById("ing_info").style.display = "inline";
+        document.getElementById("waiting_info").style.display = "inline";
+        document.getElementById("card_info").style.display = "none";
+        document.getElementById("finish_info").style.display = "none";
+
+        getData();
+
+    } else {
+        console.log("none:");
+
+        document.getElementById("finish_info").style.display = "inline";
+        document.getElementById("ing_info").style.display = "none";
+
+        // document.getElementById("card_info").style.visibility = "none";
+        // document.getElementById("card_info").style.visibility="inline";
+    }
+
+    function countDownTime() {
+        // 倒计时截止时间
+        var EndTime = new Date(end_time);
+        // 现在的事件
+        var NowTime = new Date();
+        // 时间差（时间单位：ms）
+        var t = EndTime.getTime() - NowTime.getTime();
+        var m = 0;
+        var s = 0;
+        if (t >= 0) {
+            // 向下取整
+            m = Math.floor(t / 1000 / 60);
+            s = Math.floor(t / 1000 % 60);
+        }
+
+        // 如果是一位数，前面拼接"0"
+        function toDouble(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        $("#residueMinutes").html(toDouble(m));
+        $("#residueSeconds").html(toDouble(s));
+        if (m === 0 && s === 0) {
+            getData();
+        }
+    }
+
+
+    function getData() {
+        // o = 'i202211052032384864'
+        // o = 'i202211052035086840'
+        // o = 'i202211052102061722'
+        const url = "http://testtest.benpaodewanzi2022.xyz/Comment_CommonController.getOrder?orderNo=" + o;
+        console.log("url:" + url);
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+
+                if (response.ret === 200) {
+                    console.log(response.data);
+
+                    document.getElementById("order_no").innerText = "订单:" + response.data.order_no;
+
+                    switch (response.data.status) {
+                        case 1:
+                            console.log("等待ing")
+                            start();
+                            document.getElementById("card_info").style.display = "none";
+                            document.getElementById("waiting_info").style.display = "inline";
+                            break;
+                        case 2:
+                            start();
+                            end_time = response.data.end_time;
+                            order = response.data;
+                            console.log("ing" + response.data.end_time)
+
+                            //ui
+
+                            document.getElementById("card_info").style.display = "inline";
+                            document.getElementById("waiting_info").style.display = "none";
+
+                            document.getElementById("pay_no").innerText = order.pay_no;
+                            document.getElementById("pay_name").innerText = order.pay_name;
+                            document.getElementById("pay_organ").innerText = order.pay_organ;
+                            document.getElementById("pay_local").innerText = order.pay_local;
+
+                            break;
+                        case 3:
+                            stop()
+                            document.getElementById("finish_info").style.display = "inline";
+                            document.getElementById("ing_info").style.display = "none";
+                            console.log("完成")
+                            break;
+                        case 4:
+                            stop()
+                            document.getElementById("finish_info").style.display = "inline";
+                            document.getElementById("ing_info").style.display = "none";
+                            console.log("超时")
+                            break;
+                        default:
+                            console.log("default")
+                            stop()
+                            document.getElementById("finish_info").style.display = "inline";
+                            document.getElementById("ing_info").style.display = "none";
+                            break;
+                    }
+
+                } else {
+                    stop()
+                }
+            },
+            error: function (thrownError) {
+                console.log(thrownError);
+                stop()
+            }
+        });
+
+    }
+
+
+    function stop() {
+        window.clearInterval(cdt)
+        console.log("stop")
+    }
+
+    function start() {
+        if (cdt == null) {
+            console.log("start countDownTime  " + end_time)
+            cdt = setInterval(countDownTime, 1000);
+        } else {
+            console.log("start countDownTime is run " + end_time)
+        }
+    }
+
+
+</script>
+
