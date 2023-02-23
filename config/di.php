@@ -43,7 +43,7 @@ $di->error = new ApiError();
      return new \PhalApi\Cache\MemcacheCache(\PhalApi\DI()->config->get('sys.mc'));
  };
 
-$di->redis = new \PhalApi\Cache\RedisCache(\PhalApi\DI()->config->get('sys.redis'));
+//$di->redis = new \PhalApi\Cache\RedisCache(\PhalApi\DI()->config->get('sys.redis'));
 
 // 支持JsonP的返回
 // if (!empty($_GET['callback'])) {
