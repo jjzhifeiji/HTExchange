@@ -6,6 +6,10 @@ use App\Common\BaseModel;
 
 class RateModel extends BaseModel
 {
+    protected function getTableName($id)
+    {
+        return 'rate';
+    }
 
     public function getsRate($where)
     {
